@@ -17,9 +17,11 @@ void insertion(struct Stack *s){
     s->S[s->head] = element;
     s->head++;
 }
-void deletion(struct Stack *s){
+int deletion(struct Stack *s){
+    int element = s->S[s->head];
     s->S[s->head] = 0;
     s->head--;
+    return element;
 }
 int main(){
     struct Stack stack;
@@ -41,7 +43,8 @@ int main(){
                 break;
             case 2:
                 if(stack.head>-1){
-                    deletion(&stack);
+                    int element = deletion(&stack);
+                    cout<<"Element deleted : "<<element;
                 }
                 else cout<<"The stack is empty"<<endl;
                 break;
