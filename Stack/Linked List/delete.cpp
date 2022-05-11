@@ -35,6 +35,15 @@ struct Node *insertion(struct Node *head){
     p->next = nxt;
     return head;
 }
+struct Node *deleten(struct Node *head){
+    if(head != NULL){
+        struct Node *p = head;
+        head = head->next;
+        delete p;
+    }
+    
+        return head;
+}
 void display(struct Node *head){
     while(head != NULL){
         cout<<"The data at the node is :  "<<head->data<<endl;
@@ -50,7 +59,8 @@ int main(){
         cin>>cond;
         if(cond == 0) break;
         else if(cond == 1) head = insertion(head);
-        else if (cond == 2) display(head);
+        else if(cond == 2) head = deleten(head);
+        else if (cond == 3) display(head);
     }
     display(head);
     return 0;
