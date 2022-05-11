@@ -11,7 +11,7 @@ struct Node *initialize(){
     head->next = NULL;
     return head;
 }
-struct Node *insertion(struct Node *head){
+void insertion(struct Node *&head){
     if(head==NULL){
         cout<<"Empty Stack"<<endl;
        struct Node *nxt = new struct Node;
@@ -21,8 +21,7 @@ struct Node *insertion(struct Node *head){
        nxt->data = data;
        nxt->next = NULL;
        head = nxt;
-        
-       return head;
+       return;
     }
     struct Node *p = head;
     while(p->next != NULL) p = p->next;
@@ -33,16 +32,19 @@ struct Node *insertion(struct Node *head){
     nxt->data = data;
     nxt->next = NULL;
     p->next = nxt;
-    return head;
 }
 struct Node *deleten(struct Node *head){
-    if(head != NULL){
-        struct Node *p = head;
-        head = head->next;
-        delete p;
+    if(head->next == NULL){
+        cout<<"here 1";
+        delete head;
+        return NULL;
     }
-    
-        return head;
+    struct Node *p = head;
+    while(p->next->next != NULL) p = p->next;
+    struct Node *n = p->next;
+    p->next = NULL;
+    delete n;
+    return head;
 }
 void display(struct Node *head){
     while(head != NULL){
@@ -58,7 +60,7 @@ int main(){
         int cond;
         cin>>cond;
         if(cond == 0) break;
-        else if(cond == 1) head = insertion(head);
+        else if(cond == 1) insertion(head);
         else if(cond == 2) head = deleten(head);
         else if (cond == 3) display(head);
     }
